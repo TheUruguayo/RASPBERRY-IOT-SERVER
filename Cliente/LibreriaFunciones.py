@@ -77,8 +77,8 @@ def mandaMail(body):
     except:
         print('Something went wrong...')
 
-    gmail_user = 'ignaciolanzani2@gmail.com'
-    gmail_password = '4338929-lANZA-9'
+    gmail_user = 'your email'
+    gmail_password = 'your password'
 
     try:
         server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
@@ -88,7 +88,7 @@ def mandaMail(body):
         print('Something went wrong...')
 
     sent_from = gmail_user
-    to = ['IGNACIO.LANZANI@gmail.com', 'IGNACIOLANZANI2@gmail.com']
+    to = ['mail1', 'mail2']
     subject = 'Alarma, se te prende fuego la choza'
     # body = ("Hey, whats up?\n\n- You")
 
