@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-image {
+  background-image: linear-gradient(rgba(0, 100, 50, 0.5), rgba(0, 0, 0, 0.5)), url( "banner.jpg");
+  height: 30%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.hero-bott{
+  background-image: linear-gradient(rgba(0, 100, 50, 0.5), rgba(0, 0, 0, 0.5)), url( "banner.jpg");
+  height: 30%;
+  background-position: botton;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.hero-text button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 10px 25px;
+  color: black;
+  background-color: #ddd;
+  text-align: center;
+  cursor: pointer;
+}
+
+.hero-text button:hover {
+  background-color: #555;
+  color: white;
+}
+</style>
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+<div class="hero-image">
+  <div class="hero-text">
+    <h1 style="font-size:40px">SENSOR FOTORESISTIVO</h1>
+    <p>LDR</p>
+      <p><a href="/BACK/BACK" class="button">PRINCIPAL</a></p>
+      <p><a href="plot.png" class="button">PLOT</a></p>
+  </div>
+</div>
+
+ <div class="content">
+    <h1 style="text-align: center"></h1> <!-- #header -->
+    </form> Fecha Desde<form action="/FechaDesdeL" method="POST">
+                    <input name="textFD">
+                    <input type="submit" value="Cambiar">
+        </form> Fecha Hasta<form action="/FechaHastaL" method="POST">
+                                <input name="textFH">
+                                <input type="submit" value="Cambiar">
+            </form>
+    {% if False %} <!-- si no hay tasks no muestra nada-->
+    <h4 style="text-align: center">NO HAY MEDICIIONES DEL TERMISTOR, HABRA QUE ESPERAR?</h4>
+    {% else %}
+    <table  style="text-align: center"><!--CREA UNA TABLA -->
+        <th style="background-color:powderblue;"><a href="/mostrarLDR" class="button">TODAS--></a></th>
+        <th style="background-color:powderblue;"><a  href="/{{'RASP1L'}}">RASP1  </a></th> <!-- #header -->
+        <th style="background-color:powderblue;"><a  href="/{{'RASP2L'}}">RASP2  </a> </th><!-- #header -->
+        <th style="background-color:powderblue;"><a  href="/{{'RASP3L'}}">RASP3  </a> </th><!-- #header -->
+        <tr>
+            <th>Numero</th>
+            <th>LUX</th>
+            <th>Dispositivo</th>
+            <th>Fecha</th>
+
+        </tr>
+        {% for tempe in base %}                        <!-- #esto reccore todas las definidas, en la variable task-->
+            <tr> <!--ESTO SE ACTUALIZA DE MANERA DINAMICA -->
+                <td>{{ tempe.id }}</td>
+                <td>{{ tempe.content }}</td>                          <!--#esto mira el contenido de cada taskt -->
+                <td style={{("color:Tomato;") if (tempe.raspberry == 'RASP1') else (("color:MediumSeaGreen;") if (tempe.raspberry == 'RASP2') else ("color:DodgerBlue;"))}}>{{ tempe.raspberry }}</td>
+                <td>{{ tempe.date_created.strftime("%m-%d %H:%M:%S") }}</td>
+
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+     </div >
+
+</head>
+
+
+</body>
+</html>

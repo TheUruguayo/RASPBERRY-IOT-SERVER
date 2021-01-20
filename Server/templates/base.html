@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+   <head>
+      <title>GPIO Control</title>
+      <link rel="stylesheet" href='../static/style.css'/>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+      {% block head %}{% endblock %}
+   </head>
+   <body>
+		 <h1 style="text-align: center">Sistema {{ time  }}</h1>
+		<h2> Status </h2>
+		<h3> Hora en el dispositivo ==>  {{ time  }}</h3>
+		<h3> TEMPERATURA ==>  {{ temp  }}</h3>
+		<h3> Valores de alarma ==>  {{ th  }}</h3>
+		<h3> LUMINOCIDAD ==>  {{ LDR  }}</h3>
+		 <h3>LED ==>  {{ LED  }}</h3>
+		<br>
+		<h2> Commands </h2>
+
+		<h3>
+			Accion de Temperatura ==>
+			<a href="/temp/medir" class="button">Medir</a>
+			<a href="/temp/off"class="button">Reiniciar</a>
+		</h3>
+		<h3>
+			Led ==>
+			<a href="/LED/on" class="button">Prender</a>
+			<a href="/LED/off"class="button">Apagar</a>
+
+		</h3>
+		<h3>
+			Mandar mail ==>
+			<a href="/sendAlarm/on" class="button">Mandar Mail de alarma</a>
+			<a href="/sendInfo/off"class="button">Mandar Mail de informacion</a>
+		</h3>
+		 <h3>
+			Mostrar base de datos==>
+			<a href="/mostrar" class="button">Mostrar</a>
+			<a href="/borrar" class="button">Borrar datos</a>
+		</h3>
+        {% block body %}{% endblock %}
+   </body>
+</html>

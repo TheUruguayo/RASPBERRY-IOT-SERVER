@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link href="{{ url_for('static', filename='css/default.css') }}" rel="stylesheet" type="text/css" media="all" />
+<link  href="{{ url_for('static', filename='css/fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
+
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+ <meta charset="utf-8">
+    <!-- Bootstraps Java Scipts Links -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- JQuery links  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    <!--High CHART LIVE  -->
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+    <!--Gauge  -->
+    <script type="text/javascript" src="http://pubnub.github.io/eon/lib/eon.js"></script>
+
+
+ {% block head %}{% endblock %}
+</head>
+<body>
+
+<div id="header-wrapper">
+  <div id="header" class="container">
+
+    <div id="logo">
+    <h1><a href="#">SISTEMAS EMBEBIDOS <br>{{ time  }}</a></h1>
+
+</div>
+
+    <div id="menu">
+      <ul>
+        <li class="current_page_item"><a href="#" accesskey="1" title=""></a></li>
+          <img src="https://upload.wikimedia.org/wikipedia/en/b/b2/Universidad_ORT_Uruguay_-_Logo.jpg" alt="W3Schools.com" style="width:140px;height:100px;">
+        <li><a href="#" accesskey="2" title=""></a></li>
+        <li><a href="#" accesskey="3" title=""></a></li>
+        <li><a href="#" accesskey="4" title=""></a></li>
+        <li><a href="#" accesskey="5" title=""></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="header-featured"> </div>
+
+<div id="wrapper">
+  <div id="featured-wrapper">
+    <div id="featured" class="container">
+<a class="weatherwidget-io" href="https://forecast7.com/es/n34d82n56d16/montevideo-department/" data-label_1="MONTEVIDEO" data-label_2="WEATHER" data-theme="original" >MONTEVIDEO WEATHER</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
+
+      <div class="column1"> <span class="icon icon-cogs"></span>
+
+        <div class="title">
+          <h2>Configuracion</h2>
+
+            <br>
+          <br>
+            <br>
+            <h2>    </h2>
+        </div>
+        <p>Valores de alarmas th: {{ th  }}ºC  + tl:{{ tl  }}ºC + Alarma on:{{ Alarma  }} + Tiempo de medicion: {{ TMM  }}s+ Tiempo de alarma: {{ TAA }}s </p>
+        <a href="/start/on" class="button">On/Off Alarma</a>
+
+      </div>
+
+      <div class="column2"> <span class="icon icon-fire"></span>
+
+        <div class="title">
+          <h2>Temperatura  {{ temp  }} </h2>
+
+            <div >
+                <h1 style="color:white;font-size:20px;" class="sensor2">Sensor :</h1>
+            </div>
+             <div >
+                <h1 style="color:white;font-size:20px;" class="sensor1"> Sensor : </h1>
+            </div>
+
+            <br>
+
+            <br>
+            <br>
+        </div>
+        <p><a href="/temp/medir" class="button">Medir</a></p>
+      </div>
+      <div class="column3"> <span class="icon icon-lightbulb"></span>
+        <div class="title">
+
+          <h2>Rasp1:   {{ Rasp1 }}</h2>
+            <h2>Rasp2:   {{ Rasp2 }}</h2>
+            <h2>Rasp3:   {{ Rasp3 }}</h2>
+        </div>
+        <p><a href="/LED/rasp1" class="button">Rasp1 Led ON/OFF</a></p>
+          <p><a href="/LED/rasp2" class="button">Rasp2  Led ON/OFF</a></p>
+          <p><a href="/LED/rasp3" class="button">Rasp3  Led ON/OFF</a></p>
+      </div>
+      <div class="column4"> <span class="icon icon-eye-open"></span>
+        <div class="title">
+          <h2>LUMINOSIDAD  {{ LDR  }}</h2>
+        </div>
+        <p>ESTADO DEL LED1 {{ LED1  }}.</p>
+          <p>ESTADO DEL LED2 {{ LED2  }}.</p>
+          <p>ESTADO DEL LED3 {{ LED3  }}.</p>
+      </div>
+    </div>
+  </div>
+  <div id="extra" class="container">
+    <h2>MODIFICAR PARAMETROS</h2>
+    <span>Cambiar--> {{ th  }}ºC<form action="/cambiar/th" method="POST">
+                    <input name="textTh">
+                    <input type="submit" value="Cambiar">
+</form>
+        Cambiar-->{{ tl  }}ºC <form action="/cambiar/tl" method="POST">
+                    <input name="textTl">
+                    <input type="submit" value="Cambiar">
+</form>
+        Cambiar Tiempo de alarma--> {{ TAA }}s<form action="/cambiar/ta" method="POST">
+                                <input name="textTiempoDeAlarma">
+                                <input type="submit" value="Cambiar">
+        </form>
+        Cambiar Mail: {{ Destino}} <form action="/cambiar/sm" method="POST">
+                                <input name="textDestino">
+                                <input type="submit" value="Cambiar">
+
+</form> Cambiar Tiempo de medida-->  {{ TMM  }}s <form  action="/cambiar/tm" method="POST">
+                                       <input name="textTiempoDeMedida">
+                                       <input type="submit" value="Cambiar">
+</form></span>
+
+    <p> <strong>Universidad ORT</strong>, >Ignacio Lanzani</a>. > IGNACIO.LANZANI@GMAIL.COM</a>. </a>  </p>
+
+    <a href="/mostrarDig" class="button">VER BASE DE DATOS Digital</a>
+      <a href="/mostrarTer" class="button">VER BASE DE DATOS Termistor</a>
+     <a href="/mostrarLDR" class="button">VER BASE DE DATOS LDR</a> </div>
+</div>
+
+<div id="copyright" class="container">
+
+</div>
+{% block body %}{% endblock %}
+<!--&lt;!&ndash;   <div class="jumbotron">&ndash;&gt;-->
+<!--&lt;!&ndash;        <h1 class="text-center text-white">arriba de la imagen va esto </h1>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--    <br>-->
+<!--    <br>-->
+
+<!--    <div class="container-fluid">-->
+
+<!--        <div class="row">-->
+
+<!--            <div class="col-5 jumbotron p-2 mx-1">-->
+<!--                <h1 class="sensor1"> Sensor : </h1>-->
+<!--            </div>-->
+<!--            <br>-->
+
+<!--            <div class="col-5 jumbotron p-2 mx-1">-->
+<!--                <h1 class="sensor2">Sensor :</h1>-->
+<!--            </div>-->
+<!--            <br>-->
+
+
+
+<!--        </div>-->
+    </div>
+
+    <style>
+
+        .jumbotron{
+            widows: 150px;
+            height: 220px;
+            justify-content: center;
+        }
+
+        .row{
+            justify-content: center;
+        }
+
+
+    </style>
+
+    <div class="container-fluid">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="container-fluid" id="data-temperature">
+
+            </div>
+        </div>
+    </div>
+<br>
+<br>
+<br>
+
+    <div class="container-fluid">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="container-fluid" id="data-humidity">
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var chartTemperatue;
+        var chartHumidity;
+
+        function requestData()
+        {
+            // Ajax call to get the Data from Flask
+            var requests = $.get('/data');
+
+            var tm = requests.done(function (result)
+            {
+                // Temperature
+                var seriesTemperature = chartTemperatue.series[0],
+                    shiftTemperature = seriesTemperature.data.length > 20;
+
+                // Humidity
+                var seriesHumidity = chartHumidity.series[0],
+                    shiftHumidity = seriesTemperature.data.length > 20;
+
+                // Add the Point
+                // Time Temperature\
+                var data1 = [];
+                data1.push(result[0]);
+                data1.push(result[1]);
+
+
+                // Add the Point
+                // Time Humidity
+                var data2 = [];
+                data2.push(result[0]);
+                data2.push(result[2]);
+                data2.push(result[3]);
+
+                chartTemperatue.series[0].addPoint(data1, true, shiftTemperature);
+                chartHumidity.series[0].addPoint(data2, true, shiftHumidity);
+                $(".sensor1").text("");
+                $(".sensor1").text("DIGITAL : " +  data1[1] +"C "+result[3] );
+
+                $(".sensor2").text("");
+                $(".sensor2").text("TERMISTOR : " +  data2[1] +"C "+result[3] );
+
+                // call it again after one second
+                setTimeout(requestData, 5000);
+
+            });
+        }
+
+        $(document).ready(function()
+        {
+            // --------------Chart 1 ----------------------------
+            chartTemperatue = new Highcharts.Chart({
+                chart:
+                    {
+                    renderTo: 'data-temperature',
+                    defaultSeriesType: 'area',
+                    events: {
+                        load: requestData
+                            }
+                    },
+                title:
+                    {
+                    text: 'Digital'
+                    },
+                xAxis: {
+                    type: 'datetime',
+                    tickPixelInterval: 150,
+                    maxZoom: 20 * 1000
+                        },
+                yAxis: {
+                    minPadding: 0.2,
+                    maxPadding: 0.2,
+                    title: {
+                        text: 'Value',
+                        margin: 80
+                            }
+                         },
+                series: [{
+                    color : '#c23d23',
+                    lineColor: '#303030',
+                    name: 'Temperature',
+                    data: []
+                }]
+            });
+            // --------------Chart 1 Ends - -----------------
+
+            chartHumidity = new Highcharts.Chart({
+                chart:
+                    {
+                        renderTo: 'data-humidity',
+                        defaultSeriesType: 'area',
+                        events: {
+                            load: requestData
+                        }
+                    },
+                title:
+                    {
+                        text: 'Termistor'
+                    },
+                xAxis: {
+                    type: 'datetime',
+                    tickPixelInterval: 150,
+                    maxZoom: 20 * 1000
+                },
+                yAxis: {
+                    minPadding: 0.2,
+                    maxPadding: 0.2,
+                    title: {
+                        text: 'Value',
+                        margin: 80
+                    }
+                },
+                series: [{
+                    lineColor: '#1d82b8',
+                    name: 'Temperatura',
+                    data: []
+                }]
+            });
+
+
+        });
+    </script>
+
+
+
+<script>
+    class Image{
+
+        constructor(imgUrl, size)
+        {
+            this.imgUrl=imgUrl;
+            this.size=size;
+        }
+
+        backgroundImage()
+        {
+            console.log("inside function ")
+            // Select the Image
+            var img = document.querySelector(".jumbotron");
+
+            // create Css Text
+            var text = "margin:auto;"+
+                "background-image: url("+this.imgUrl+");" +
+                "background-size:cover;"+
+                "opacity:1;"+
+                "background-blend-mode: darken;"+
+                "height: "+ this.size + "vh;";
+
+            img.style.cssText =  text;
+        }
+
+        centerTitle()
+        {
+            /*
+                Center the Title
+             */
+            var t1 = document.querySelector("#title");
+            t1.classList.add("text-white");
+            t1.classList.add("text-center");
+            t1.classList.add("display-3");
+        }
+    }
+<!--    const imgUrl = 'https://media.giphy.com/media/B1xUp52rUnrv1Leakw/giphy.gif'-->
+<!--    const size = "100";-->
+<!--    var obj = new Image(imgUrl, size);-->
+<!--    obj.backgroundImage();-->
+<!--    obj.centerTitle();-->
+    </script>
+
+</body>
+</html>
